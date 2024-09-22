@@ -1,0 +1,25 @@
+.container {
+  cursor: pointer;
+  display: flex;
+  align-items: flex-end;
+  column-gap: var(--space-02);
+}
+
+.indicator_container {
+  width: var(--space-04);
+  height: var(--space-04);
+  background-color: var(--color-black-500);
+  border: var(--space-px) solid var(--color-black-300);
+  border-radius: var(--space-01);
+  overflow: hidden;
+}
+
+.indicator {
+  width: var(--space-full);
+  height: var(--space-full);
+  background-color: var(--color-blue-500);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--color-black-800);
+}

@@ -1,0 +1,6 @@
+.container {
+  color: var(--color-neutral-300);
+  font-weight: var(--font-bold);
+  font-size: var(--space-03);
+}
+ 

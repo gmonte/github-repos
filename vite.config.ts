@@ -14,7 +14,7 @@ export default defineConfig({
     react(),
     Unfonts({
       google: {
-        families: ['Inter:400,700', 'Fira Code:400,700'],
+        families: ['Noto Sans:400,600', 'Fira Code:400,600'],
       },
     }),
   ]

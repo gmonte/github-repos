@@ -20,15 +20,25 @@
     "prepare": "husky"
   },
   "dependencies": {
+    "@phosphor-icons/react": "^2.1.7",
+    "@radix-ui/react-radio-group": "^1.2.0",
+    "@radix-ui/react-select": "^2.1.1",
+    "@tanstack/react-query": "^5.56.2",
+    "class-variance-authority": "^0.7.0",
+    "date-fns": "^4.1.0",
+    "lodash": "^4.17.21",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
-    "reset-css": "^5.0.2"
+    "reset-css": "^5.0.2",
+    "use-debounce": "^10.0.3",
+    "zustand": "5.0.0-rc.2"
   },
   "devDependencies": {
     "@commitlint/cli": "^18.4.3",
     "@commitlint/config-conventional": "^18.4.3",
     "@csstools/postcss-global-data": "^3.0.0",
     "@eslint/js": "^9.9.0",
+    "@types/lodash": "^4.17.7",
     "@types/node": "^22.5.5",
     "@types/react": "^18.3.3",
     "@types/react-dom": "^18.3.0",
@@ -50,9 +60,11 @@
     "postcss-css-variables": "^0.19.0",
     "postcss-custom-media": "^11.0.1",
     "postcss-custom-properties": "^14.0.1",
+    "postcss-normalize": "^13.0.0",
     "postcss-preset-env": "^10.0.3",
     "stylelint": "^16.9.0",
     "stylelint-config-standard": "^36.0.1",
+    "type-fest": "^4.26.1",
     "typescript": "^5.5.3",
     "typescript-eslint": "^8.0.1",
     "unplugin-fonts": "^1.1.1",
@@ -71,5 +83,6 @@
       "bash -c 'tsc --noEmit'",
       "eslint --fix"
     ]
-  }
+  },
+  "browserslist": "last 2 versions"
 }

@@ -1,0 +1,10 @@
+.container {
+  display: flex;
+  min-width: var(--space-60);
+  padding: var(--space-02-5);
+  background-color: var(--color-black-700);
+  border: var(--space-px) solid var(--color-black-300);
+  border-radius: var(--space-02);
+  column-gap: var(--space-02-5);
+  box-sizing: border-box;
+}

@@ -1,0 +1,8 @@
+.container {
+  display: flex;
+  width: var(--space-full);
+  align-items: center;
+  justify-content: center;
+  column-gap: var(--space-01-5);
+  padding: var(--space-04) 0;
+}

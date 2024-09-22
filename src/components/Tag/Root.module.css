@@ -1,0 +1,25 @@
+
+.container {
+  display: flex;
+  align-items: center;
+  column-gap: var(--space-02);  
+  border: var(--space-px) solid var(--color-black-300);
+  border-radius: var(--space-02);
+}
+
+.size_normal {
+  padding: var(--space-01) var(--space-02-5);
+}
+
+.size_slim {
+  width: fit-content;
+  padding: 0 var(--space-02);
+}
+
+.color_light {
+  background-color: var(--color-black-500);
+}
+
+.color_dark {
+  background-color: var(--color-black-800);
+}

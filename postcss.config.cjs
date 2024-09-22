@@ -9,5 +9,6 @@ module.exports = {
     autoprefixer: {},
     'postcss-css-variables': {},
     'postcss-custom-media': {},
+    'postcss-normalize': {}
   },
 }

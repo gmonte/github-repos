@@ -1,0 +1,33 @@
+.trigger {
+  display: flex;
+  align-items: center;
+  column-gap: var(--space-02);
+  cursor: pointer;
+}
+
+.icon {
+  color: var(--color-neutral-700);
+  display: flex;
+  align-items: center;
+}
+
+.content {
+  background-color: var(--color-black-600);
+  z-index: 100;
+  border: 1px solid var(--color-black-300);
+  border-radius: var(--space-02);
+  overflow: hidden;
+}
+
+.options_container {
+  display: flex;
+  flex-direction: column;
+}
+
+.arrow_navigation {
+  width: var(--space-full);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: var(--space-00-5) 0;
+}

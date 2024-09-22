@@ -1,29 +1,50 @@
 :root {
   /* font family */
-  --font-sans: 'Inter', sans-serif;
+  --font-sans: 'Noto Sans', sans-serif;
   --font-mono: 'Fira Code', monospace;
 
   /* colors */
-  --color-black-800: #18181b;
+  --color-black-300: #3d444d;
+  --color-black-400: #2F3742;
+  --color-black-500: #212830;
+  --color-black-600: #151B23;
+  --color-black-700: #0d1117;
+  --color-black-800: #010409;
   --color-black-900: #000;
-  --color-white: #fff;
+
+  --color-blue-100: #b3d4ff;
+  --color-blue-200: #80b6ff;
+  --color-blue-300: #4d98ff;
+  --color-blue-400: #2678f2;
+  --color-blue-500: #1f6feb;
+  --color-blue-600: #1c62d4;
+  --color-blue-700: #1955bc;
+  --color-blue-800: #1549a3;
+  --color-blue-900: #113a82;
+
+  --color-neutral-100: #fff;
+  --color-neutral-200: #f0f6fc;
+  --color-neutral-600: #9198a1;
+  --color-neutral-700: #858C94;
   --color-transparent: transparent;
 
   /* spacings */
-  --space-0: 0px;
+  --space-00: 0px;
   --space-px: 1px;
-  --space-0-5: 2px;
-  --space-1: 4px;
-  --space-1-5: 6px;
-  --space-2: 8px;
-  --space-2-5: 10px;
-  --space-3: 12px;
-  --space-4: 16px;
-  --space-5: 20px;
-  --space-6: 24px;
-  --space-7: 28px;
-  --space-8: 32px;
-  --space-9: 36px;
+  --space-00-5: 2px;
+  --space-01: 4px;
+  --space-01-5: 6px;
+  --space-02: 8px;
+  --space-02-5: 10px;
+  --space-03: 12px;
+  --space-03-5: 14px;
+  --space-04: 16px;
+  --space-04-5: 18px;
+  --space-05: 20px;
+  --space-06: 24px;
+  --space-07: 28px;
+  --space-08: 32px;
+  --space-09: 36px;
   --space-10: 40px;
   --space-11: 44px;
   --space-12: 48px;
@@ -44,4 +65,12 @@
   --space-72: 288px;
   --space-80: 320px;
   --space-96: 384px;
+  --space-full: 100%;
+  --space-max-content: 1280px;
+  --space-screen-w: 100vw;
+  --space-screen-h: 100vh;
+
+  /* weight */
+  --font-bold: 600;
+  --font-boldregular: 400;
 }

@@ -1,0 +1,17 @@
+.id_column {
+  font-family: var(--font-mono);
+}
+
+.description_column {
+  max-width: var(--space-96);
+}
+
+.date_column {
+  color: var(--color-neutral-600);
+}
+
+.header_cell {
+  display: flex;
+  align-items: center;
+  column-gap: var(--space-01);
+}

@@ -3,6 +3,28 @@
 body {
   font-family: var(--font-sans);
   background-color: var(--color-black-800);
-  color: var(--color-white);
-  font-size: var(--space-4);
+  color: var(--color-neutral-200);
+  min-height: var(--space-screen-h);
+  min-width: var(--space-full);
+  overflow-x: hidden;
+  font-size: var(--space-03);
+
+  @media(--screen-sm) {
+    font-size: var(--space-03-5);
+  }
+}
+
+button, input, textarea, option {
+  all: unset;
+  display: inline-block;
+  font: inherit;
+}
+
+@keyframes rotate {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(180deg);
+  }
 }

@@ -1,0 +1,16 @@
+.container {
+  display: flex;
+  align-items: center;
+  padding: var(--space-02) var(--space-02);
+  border-bottom: var(--space-px) solid var(--color-black-300);
+  cursor: pointer;
+  background-color: var(--color-transparent);
+  transition: background-color 150ms linear;
+  outline: none;
+  column-gap: var(--space-02);
+
+  &:hover {
+    background-color: var(--color-black-700);
+  }
+}
+

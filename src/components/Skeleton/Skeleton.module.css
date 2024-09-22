@@ -1,0 +1,17 @@
+.container {
+  width: calc(var(--space-full) - 15%);
+  height: var(--space-full);
+  background-color: #e0e0e0;
+  background-image: linear-gradient(90deg, var(--color-black-500), var(--color-black-600), var(--color-black-500));
+  background-size: 200% 100%;
+  animation: loading 1.5s linear infinite;
+}
+
+@keyframes loading {
+  0% {
+    background-position: 200% 0;
+  }
+  100% {
+    background-position: -200% 0;
+  }
+}
