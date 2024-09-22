@@ -1,0 +1,8 @@
+@import 'reset-css/reset.css';
+
+body {
+  font-family: var(--font-sans);
+  background-color: var(--color-black-800);
+  color: var(--color-white);
+  font-size: var(--space-4);
+}

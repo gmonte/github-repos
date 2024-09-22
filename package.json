@@ -1,0 +1,75 @@
+{
+  "name": "github-repos",
+  "private": true,
+  "version": "0.0.0",
+  "type": "module",
+  "packageManager": "pnpm@9.11.0",
+  "engines": {
+    "node": ">=18.19.0"
+  },
+  "author": {
+    "name": "Guilherme Monte",
+    "email": "monte.gui@gmail.com",
+    "url": "https://github.com/gmonte"
+  },
+  "scripts": {
+    "dev": "vite",
+    "build": "tsc -b && vite build",
+    "lint": "eslint .",
+    "preview": "vite preview",
+    "prepare": "husky"
+  },
+  "dependencies": {
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1",
+    "reset-css": "^5.0.2"
+  },
+  "devDependencies": {
+    "@commitlint/cli": "^18.4.3",
+    "@commitlint/config-conventional": "^18.4.3",
+    "@csstools/postcss-global-data": "^3.0.0",
+    "@eslint/js": "^9.9.0",
+    "@types/node": "^22.5.5",
+    "@types/react": "^18.3.3",
+    "@types/react-dom": "^18.3.0",
+    "@vitejs/plugin-react": "^4.3.1",
+    "autoprefixer": "^10.4.20",
+    "commitizen": "^4.3.0",
+    "conventional-commit-types": "^3.0.0",
+    "cz-custom": "^0.0.2",
+    "eslint": "^9.9.0",
+    "eslint-plugin-import-helpers": "^1.3.1",
+    "eslint-plugin-react": "^7.36.1",
+    "eslint-plugin-react-hooks": "^5.1.0-rc.0",
+    "eslint-plugin-react-refresh": "^0.4.9",
+    "globals": "^15.9.0",
+    "husky": "^9.1.6",
+    "lint-staged": "^15.2.10",
+    "postcss": "^8.4.47",
+    "postcss-cli": "^11.0.0",
+    "postcss-css-variables": "^0.19.0",
+    "postcss-custom-media": "^11.0.1",
+    "postcss-custom-properties": "^14.0.1",
+    "postcss-preset-env": "^10.0.3",
+    "stylelint": "^16.9.0",
+    "stylelint-config-standard": "^36.0.1",
+    "typescript": "^5.5.3",
+    "typescript-eslint": "^8.0.1",
+    "unplugin-fonts": "^1.1.1",
+    "vite": "^5.4.1"
+  },
+  "config": {
+    "commitizen": {
+      "path": "node_modules/cz-custom"
+    },
+    "cz-custom": {
+      "config": "./.cz-config.cjs"
+    }
+  },
+  "lint-staged": {
+    "**/*.{ts,tsx}": [
+      "bash -c 'tsc --noEmit'",
+      "eslint --fix"
+    ]
+  }
+}
