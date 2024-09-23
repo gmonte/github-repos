@@ -27,6 +27,7 @@ jobs:
         uses: SpicyPizza/create-envfile@v1.3
         with:
           envkey_VITE_FIREBASE_PROJECT_ID: ${{ secrets.VITE_FIREBASE_PROJECT_ID }}
+          envkey_VITE_GITHUB_TOKEN: ${{ secrets.VITE_GITHUB_TOKEN }}
           file_name: .env
           fail_on_empty: false
 
