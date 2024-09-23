@@ -1,5 +1,5 @@
 .container {
-  color: var(--color-neutral-300);
+  color: var(--color-neutral-200);
   font-weight: var(--font-bold);
   font-size: var(--space-03);
 }

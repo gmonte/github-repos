@@ -110,7 +110,15 @@ export function List() {
   const queryClient = useQueryClient()
 
   const { refetch, data, isLoading, error } = useQuery<GithubPaginatedResponse<GithubRepository[]>, GithubErrorResponse>({
-    queryKey: [QueryTag.repositories, queryParams.page, queryParams.pageSize, queryParams.sortBy, queryParams.sortDirection],
+    queryKey: [
+      QueryTag.repositories,
+      queryParams.page,
+      queryParams.pageSize,
+      queryParams.sortBy,
+      queryParams.sortDirection,
+      technology,
+      input
+    ],
     queryFn: async ({ signal }) => {
       function getSortColumnName() {
         const sortColumn = columns.find(({ field }) => field === queryParams.sortBy)
