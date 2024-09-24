@@ -1,4 +1,4 @@
-import { ReactNode } from "react"
+import { Key, ReactNode } from "react"
 
 import { Paths } from 'type-fest'
 
@@ -14,13 +14,6 @@ export type DataTableColumn<Data extends DataTableData, T extends Paths<Data> = 
   cellClassName?: string;
   render?: (data: Data) => ReactNode;
   sortable?: boolean;
-}
-
-export type DataTableQueryParams<Data extends DataTableData> = {
-  page: number,
-  pageSize: number,
-  sortBy?: Paths<Data>,
-  sortDirection?: SortDirection
 }
 
 export type DataTableProps<Data extends DataTableData> = {
@@ -39,6 +32,6 @@ export type DataTableProps<Data extends DataTableData> = {
   onPageSizeChange: (pageSize: number) => void
   onSortByChange: (sortBy?: Paths<Data>) => void
   onSortDirectionChange: (sortDirection?: SortDirection) => void
-  keyExtractor: (item: Data) => string
+  keyExtractor: (item: Data) => Key
   onRowClick?: (row: Data) => void
 }

@@ -7,6 +7,7 @@ import {
 
 import { Button } from '@/components/Button'
 
+import { testIds } from './DataTable.constants'
 import { DataTableData, DataTableProps } from './DataTable.types'
 import styles from './Pagination.module.css'
 
@@ -22,7 +23,7 @@ export function Pagination<Data extends DataTableData>(
     pageSize: DataTableProps<Data>['pageSize']
     totalCount?: DataTableProps<Data>['totalCount']
     paginationSize?: DataTableProps<Data>['paginationSize']
-    onPageChange: DataTableProps<Data>['onPageChange']
+    onPageChange?: DataTableProps<Data>['onPageChange']
   }
 ) {
   const numberOfPages = Math.ceil(totalCount / pageSize)
@@ -43,12 +44,12 @@ export function Pagination<Data extends DataTableData>(
   return (
     <>
       {!!numberOfPages && (
-        <div className={styles.container}>
+        <div className={styles.container} data-testid={testIds.pagination.container}>
           <Button
-            active={page === 1}
             disabled={page === 1}
             variant="link"
-            onClick={() => onPageChange(page - 1)}
+            onClick={() => onPageChange?.(page - 1)}
+            data-testid={testIds.pagination.previous}
           >
             <CaretLeft />
             {' '}Previous
@@ -59,17 +60,18 @@ export function Pagination<Data extends DataTableData>(
               key={pageNumber}
               active={pageNumber === page}
               disabled={pageNumber === page}
-              onClick={() => onPageChange(pageNumber)}
+              onClick={() => onPageChange?.(pageNumber)}
+              data-testid={testIds.pagination.page(pageNumber)}
             >
               {pageNumber}
             </Button>
           ))}
 
           <Button
-            active={page === numberOfPages}
             disabled={page === numberOfPages}
             variant="link"
-            onClick={() => onPageChange(page + 1)}
+            onClick={() => onPageChange?.(page + 1)}
+            data-testid={testIds.pagination.next}
           >
             Next{' '}
             <CaretRight />

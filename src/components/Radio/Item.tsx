@@ -16,7 +16,11 @@ export function Item({
   className?: string
 }>) {
   return (
-    <RadioGroup.Item value={value} className={ cx(styles.container, className) }>
+    <RadioGroup.Item
+      value={value}
+      className={ cx(styles.container, className) }
+      data-testid={value}
+    >
       <div className={ styles.indicator_container }>
         <RadioGroup.Indicator asChild>
           <div className={ styles.indicator }>

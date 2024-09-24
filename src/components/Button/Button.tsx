@@ -60,7 +60,8 @@ export function Button ({
   return (
     <button
       disabled={ disabled }
-      className={cx(variantStyle({ variant, disabled, active }), className) }
+      className={ cx(variantStyle({ variant, disabled, active }), className) }
+      data-active={ active }
       { ...props }
     >
       {children}

@@ -6,19 +6,17 @@ import * as SelectPrimitive from '@radix-ui/react-select'
 import styles from './Root.module.css'
 
 export function Root({
-  placeholder,
   children,
   Label = ({ children }) => children,
   ...props
 }: ComponentProps<typeof SelectPrimitive.Root> & {
   Label?: ElementType<PropsWithChildren>
-  placeholder?: string
 }) {
   return (
     <SelectPrimitive.Root {...props}>
       <SelectPrimitive.Trigger className={styles.trigger}>
         <Label>
-          <SelectPrimitive.Value placeholder={placeholder} />
+          <SelectPrimitive.Value />
         </Label>
         <SelectPrimitive.Icon className={styles.icon}>
           <CaretDown weight="fill" size={12} />

@@ -5,7 +5,7 @@ import { persist } from 'zustand/middleware'
 import { Technology } from '@/constants'
 import { GithubRepository, SortDirection } from '@/types'
 
-type FilterState = {
+export type FilterState = {
   technology: Technology
   setTechnology: (technology: Technology) => void
 

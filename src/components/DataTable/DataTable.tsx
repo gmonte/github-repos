@@ -1,7 +1,3 @@
-import { useMemo } from 'react'
-
-import { uniq } from 'lodash'
-
 import { Controls } from './Controls'
 import styles from './DataTable.module.css'
 import type { DataTableData, DataTableProps } from './DataTable.types'
@@ -14,7 +10,7 @@ export function DataTable<Data extends DataTableData>(
     columns,
     page,
     pageSize,
-    pageSizeOptions: _pageSizeOptions = [10, 20, 50, 100],
+    pageSizeOptions,
     totalCount = 0,
     paginationSize,
     sortBy,
@@ -29,14 +25,6 @@ export function DataTable<Data extends DataTableData>(
     onRowClick
   }: DataTableProps<Data>
 ) {
-
-  const pageSizeOptions = useMemo(
-    () => {
-      return uniq([..._pageSizeOptions, pageSize])
-        .sort((a, b) => a - b)
-    },
-    [_pageSizeOptions, pageSize]
-  )
 
   return (
     <div className={ styles.container }>

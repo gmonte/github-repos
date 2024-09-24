@@ -8,7 +8,10 @@ import { TextInput } from "@/components/TextInput"
 import { Technology } from "@/constants"
 import { useFilterStore } from "@/store/filter"
 
+import { inputDebounceTime, testIds } from "./Filter.constants"
 import styles from './Filter.module.css'
+
+
 
 export function Filter() {
   const inputRef = useRef<HTMLInputElement>(null)
@@ -20,7 +23,7 @@ export function Filter() {
     setInput
   } = useFilterStore()
 
-  const handleInputChange = useDebouncedCallback(setInput, 500)
+  const handleInputChange = useDebouncedCallback(setInput, inputDebounceTime)
 
   return (
     <div className={styles.container}>
@@ -32,6 +35,7 @@ export function Filter() {
           defaultValue={input}
           placeholder="Find a repository"
           onChange={(event) => handleInputChange(event.target.value)}
+          data-testid={testIds.input}
         />
       </TextInput.Root>
 
