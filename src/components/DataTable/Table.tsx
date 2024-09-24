@@ -36,7 +36,7 @@ export function Table<Data extends DataTableData>(
     sortBy,
     sortDirection,
     isLoading,
-    emptyState,
+    emptyState = 'We could not find any results for this filter',
     onSortByChange,
     onSortDirectionChange,
     keyExtractor,
@@ -128,8 +128,10 @@ export function Table<Data extends DataTableData>(
           {isLoading && Array.from({ length: pageSize }).map((_, index) => (
             <tr key={index} className={styles.table_body_tr}>
               {columns.map(({ field, cellClassName }) => (
-                <td key={`${index}.${field}`} className={cx(styles.table_cell, cellClassName)}>
-                  <Skeleton className={styles.skeleton} />
+                <td key={`${index}.${field}`}>
+                  <div className={cx(styles.table_cell, cellClassName)}>
+                    <Skeleton className={styles.skeleton} />
+                  </div>
                 </td>
               ))}
             </tr>
@@ -137,8 +139,10 @@ export function Table<Data extends DataTableData>(
 
           {!isLoading && isEmpty(data) && (
             <tr className={styles.table_body_tr}>
-              <td colSpan={columns.length} className={cx(styles.table_cell, styles.empty_state)}>
-                {emptyState ?? 'We could not find any results for this filter'}
+              <td colSpan={columns.length}>
+                <div className={cx(styles.table_cell, styles.empty_state)}>
+                  {emptyState}
+                </div>
               </td>
             </tr>
           )}
