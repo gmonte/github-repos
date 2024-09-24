@@ -2,7 +2,7 @@ import { ReactNode } from "react"
 
 import { Paths } from 'type-fest'
 
-export type SortDirection = 'asc' | 'desc'
+import { SortDirection } from "@/types"
 
 export type DataTableData = Record<string, unknown>
 
@@ -21,4 +21,24 @@ export type DataTableQueryParams<Data extends DataTableData> = {
   pageSize: number,
   sortBy?: Paths<Data>,
   sortDirection?: SortDirection
+}
+
+export type DataTableProps<Data extends DataTableData> = {
+  data?: Data[]
+  columns: Array<DataTableColumn<Data>>
+  page: number
+  pageSize: number
+  pageSizeOptions?: number[]
+  totalCount?: number
+  paginationSize?: number
+  sortBy?: Paths<Data>
+  sortDirection?: SortDirection
+  isLoading: boolean
+  emptyState?: ReactNode
+  onPageChange: (page: number) => void
+  onPageSizeChange: (pageSize: number) => void
+  onSortByChange: (sortBy?: Paths<Data>) => void
+  onSortDirectionChange: (sortDirection?: SortDirection) => void
+  keyExtractor: (item: Data) => string
+  onRowClick?: (row: Data) => void
 }

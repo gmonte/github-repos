@@ -1,33 +1,22 @@
-import { useMemo } from 'react'
-
-import { uniq } from 'lodash'
-
 import { Select } from '@/components/Select'
 import { Tag } from '@/components/Tag'
 
 import styles from './Controls.module.css'
-import type { DataTableData, DataTableQueryParams } from './DataTable.types'
+import { DataTableData, DataTableProps } from './DataTable.types'
 
 export function Controls<Data extends DataTableData>(
   {
-    queryParams,
-    pageSizeOptions: _pageSizeOptions = [10, 20, 50, 100],
+    pageSize,
+    pageSizeOptions,
     totalCount,
-    onQueryChange
+    onPageSizeChange
   }: {
-    queryParams: DataTableQueryParams<Data>
-    pageSizeOptions?: number[]
-    totalCount: number
-    onQueryChange: (params: DataTableQueryParams<Data>) => void
+    pageSize: DataTableProps<Data>['pageSize']
+    pageSizeOptions: NonNullable<DataTableProps<Data>['pageSizeOptions']>
+    totalCount: NonNullable<DataTableProps<Data>['totalCount']>
+    onPageSizeChange: DataTableProps<Data>['onPageSizeChange']
   }
 ) {
-  const pageSizeOptions = useMemo(
-    () => {
-      return uniq([..._pageSizeOptions, queryParams.pageSize])
-        .sort((a, b) => a - b)
-    },
-    [_pageSizeOptions, queryParams.pageSize]
-  )
 
   return (
     <div className={styles.container}>
@@ -43,16 +32,8 @@ export function Controls<Data extends DataTableData>(
       <div>
         <Tag.Root>
           <Select.Root
-            value={queryParams.pageSize.toString()}
-            placeholder='atess'
-            onValueChange={(value) => {
-              onQueryChange({
-                page: 1,
-                pageSize: Number(value),
-                sortBy: queryParams.sortBy,
-                sortDirection: queryParams.sortDirection
-              })
-            }}
+            value={pageSize.toString()}
+            onValueChange={(value) => onPageSizeChange(Number(value))}
             Label={({ children }) => (
               <>
                 <Tag.Label>

@@ -22,3 +22,5 @@ export type GithubErrorResponse = {
   message: string
   status: number
 }
+
+export type SortDirection = 'asc' | 'desc'

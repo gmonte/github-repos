@@ -1,6 +1,6 @@
 import {
   isValidElement,
-  ReactNode,
+  startTransition,
   useCallback
 } from 'react'
 
@@ -10,8 +10,9 @@ import { get, isEmpty } from 'lodash'
 import type { Paths } from 'type-fest'
 
 import { Skeleton } from '@/components/Skeleton'
+import { SortDirection } from '@/types'
 
-import type { DataTableColumn, DataTableData, DataTableQueryParams, SortDirection } from './DataTable.types'
+import type { DataTableData, DataTableProps } from './DataTable.types'
 import styles from './Table.module.css'
 
 const isRenderable = (val: unknown) => typeof val === 'string' || typeof val === 'number' || isValidElement(val)
@@ -31,21 +32,27 @@ export function Table<Data extends DataTableData>(
   {
     data,
     columns,
-    queryParams,
+    pageSize,
+    sortBy,
+    sortDirection,
     isLoading,
     emptyState,
+    onSortByChange,
+    onSortDirectionChange,
     keyExtractor,
-    onQueryChange,
     onRowClick
   }: {
-    data?: Data[]
-    columns: Array<DataTableColumn<Data>>
-    queryParams: DataTableQueryParams<Data>
-    isLoading: boolean
-    emptyState?: ReactNode
-    keyExtractor: (item: Data) => string
-    onQueryChange: (params: DataTableQueryParams<Data>) => void
-    onRowClick?: (row: Data) => void
+    data?: DataTableProps<Data>['data']
+    columns: DataTableProps<Data>['columns']
+    pageSize: DataTableProps<Data>['pageSize']
+    sortBy?: DataTableProps<Data>['sortBy']
+    sortDirection?: DataTableProps<Data>['sortDirection']
+    isLoading: DataTableProps<Data>['isLoading']
+    emptyState?: DataTableProps<Data>['emptyState']
+    onSortByChange: DataTableProps<Data>['onSortByChange']
+    onSortDirectionChange: DataTableProps<Data>['onSortDirectionChange']
+    keyExtractor: DataTableProps<Data>['keyExtractor']
+    onRowClick?: DataTableProps<Data>['onRowClick']
   }
 ) {
   const handleSort = useCallback(
@@ -53,8 +60,8 @@ export function Table<Data extends DataTableData>(
       let newSortBy: Paths<Data> | undefined = field
       let newSortDirection: SortDirection | undefined = 'desc'
 
-      if (queryParams.sortBy === field) {
-        if (queryParams.sortDirection === 'asc') {
+      if (sortBy === field) {
+        if (sortDirection === 'asc') {
           newSortDirection = undefined
           newSortBy = undefined
         } else {
@@ -62,14 +69,16 @@ export function Table<Data extends DataTableData>(
         }
       }
 
-      onQueryChange({
-        page: 1,
-        pageSize: queryParams.pageSize,
-        sortBy: newSortBy,
-        sortDirection: newSortDirection
+      startTransition(() => {
+        if (sortBy !== newSortBy) {
+          onSortByChange(newSortBy)
+        }
+        if (sortDirection !== newSortDirection) {
+          onSortDirectionChange(newSortDirection)
+        }
       })
     },
-    [onQueryChange, queryParams]
+    [onSortByChange, onSortDirectionChange, sortBy, sortDirection]
   )
 
   return (
@@ -104,8 +113,8 @@ export function Table<Data extends DataTableData>(
                       size={ 18 }
                       className={ cx(
                         styles.sort_icon,
-                        { [styles.sort_icon_asc]: queryParams.sortDirection === 'asc' },
-                        queryParams.sortBy === field ? styles.sort_icon_enabled : styles.sort_icon_disabled
+                        { [styles.sort_icon_desc]: sortDirection === 'desc' },
+                        sortBy === field ? styles.sort_icon_enabled : styles.sort_icon_disabled
                       ) }
                     />
                   )}
@@ -116,7 +125,7 @@ export function Table<Data extends DataTableData>(
         </thead>
 
         <tbody>
-          {isLoading && Array.from({ length: queryParams.pageSize }).map((_, index) => (
+          {isLoading && Array.from({ length: pageSize }).map((_, index) => (
             <tr key={index} className={styles.table_body_tr}>
               {columns.map(({ field, cellClassName }) => (
                 <td key={`${index}.${field}`} className={cx(styles.table_cell, cellClassName)}>

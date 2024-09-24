@@ -1,17 +1,28 @@
+import { Paths } from 'type-fest'
 import { create } from 'zustand'
 import { persist } from 'zustand/middleware'
 
-import { DataTableQueryParams } from '@/components/DataTable'
 import { Technology } from '@/constants'
-import { GithubRepository } from '@/types'
+import { GithubRepository, SortDirection } from '@/types'
 
 type FilterState = {
   technology: Technology
   setTechnology: (technology: Technology) => void
+
   input: string
-  setInput: (value: string) => void
-  queryParams: DataTableQueryParams<GithubRepository>
-  setQueryParams: (queryParams: DataTableQueryParams<GithubRepository>) => void
+  setInput: (input: string) => void
+
+  page: number,
+  setPage: (page: number) => void
+
+  pageSize: number,
+  setPageSize: (pageSize: number) => void
+
+  sortBy?: Paths<GithubRepository>,
+  setSortBy: (sortBy?: Paths<GithubRepository>) => void
+
+  sortDirection?: SortDirection
+  setSortDirection: (sortDirection?: SortDirection) => void
 }
 
 export const useFilterStore = create<FilterState>()(
@@ -19,20 +30,32 @@ export const useFilterStore = create<FilterState>()(
     (set) => ({
       technology: Technology.javascript,
       setTechnology(technology) {
-        set({ technology })
+        set({ technology, page: 1 })
       },
 
       input: '',
-      setInput(value) {
-        set({ input: value })
+      setInput(input) {
+        set({ input, page: 1 })
       },
 
-      queryParams: {
-        page: 1,
-        pageSize: 10
+      page: 1,
+      setPage(page) {
+        set({ page })
       },
-      setQueryParams(queryParams) {
-        set({ queryParams })
+
+      pageSize: 10,
+      setPageSize(pageSize) {
+        set({ pageSize, page: 1 })
+      },
+
+      sortBy: undefined,
+      setSortBy(sortBy) {
+        set({ sortBy, page: 1 })
+      },
+
+      sortDirection: undefined,
+      setSortDirection(sortDirection) {
+        set({ sortDirection, page: 1 })
       }
     }),
     {

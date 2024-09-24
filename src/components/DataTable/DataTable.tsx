@@ -1,8 +1,10 @@
-import { ReactNode } from 'react'
+import { useMemo } from 'react'
+
+import { uniq } from 'lodash'
 
 import { Controls } from './Controls'
 import styles from './DataTable.module.css'
-import type { DataTableColumn, DataTableData, DataTableQueryParams } from './DataTable.types'
+import type { DataTableData, DataTableProps } from './DataTable.types'
 import { Pagination } from './Pagination'
 import { Table } from './Table'
 
@@ -10,33 +12,37 @@ export function DataTable<Data extends DataTableData>(
   {
     data,
     columns,
-    queryParams,
-    pageSizeOptions,
+    page,
+    pageSize,
+    pageSizeOptions: _pageSizeOptions = [10, 20, 50, 100],
     totalCount = 0,
+    paginationSize,
+    sortBy,
+    sortDirection,
     isLoading,
     emptyState,
+    onPageChange,
+    onPageSizeChange,
+    onSortByChange,
+    onSortDirectionChange,
     keyExtractor,
-    onQueryChange,
     onRowClick
-  }: {
-    data?: Data[]
-    columns: Array<DataTableColumn<Data>>
-    queryParams: DataTableQueryParams<Data>
-    pageSizeOptions?: number[]
-    totalCount?: number
-    isLoading: boolean
-    emptyState?: ReactNode
-    keyExtractor: (item: Data) => string
-    onQueryChange: (params: DataTableQueryParams<Data>) => void
-    onRowClick?: (row: Data) => void
-  }
+  }: DataTableProps<Data>
 ) {
+
+  const pageSizeOptions = useMemo(
+    () => {
+      return uniq([..._pageSizeOptions, pageSize])
+        .sort((a, b) => a - b)
+    },
+    [_pageSizeOptions, pageSize]
+  )
 
   return (
     <div className={ styles.container }>
       <Controls
-        queryParams={queryParams}
-        onQueryChange={onQueryChange}
+        pageSize={pageSize}
+        onPageSizeChange={onPageSizeChange}
         totalCount={totalCount}
         pageSizeOptions={pageSizeOptions}
       />
@@ -44,18 +50,23 @@ export function DataTable<Data extends DataTableData>(
       <Table
         data={data}
         columns={columns}
+        pageSize={pageSize}
+        sortBy={sortBy}
+        sortDirection={sortDirection}
         isLoading={isLoading}
-        queryParams={queryParams}
         emptyState={emptyState}
-        onQueryChange={onQueryChange}
+        onSortByChange={onSortByChange}
+        onSortDirectionChange={onSortDirectionChange}
         keyExtractor={keyExtractor}
         onRowClick={onRowClick}
       />
 
       <Pagination
-        queryParams={queryParams}
-        onQueryChange={onQueryChange}
+        page={page}
+        pageSize={pageSize}
         totalCount={totalCount}
+        paginationSize={paginationSize}
+        onPageChange={onPageChange}
       />
     </div>
   )

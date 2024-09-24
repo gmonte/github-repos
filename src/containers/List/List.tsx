@@ -1,11 +1,12 @@
 import { useEffect } from "react"
 
 import { CalendarCheck, GitFork, Hash, Star, TextAlignLeft, User } from "@phosphor-icons/react"
-import { useQuery, useQueryClient } from "@tanstack/react-query"
+import { useQuery } from "@tanstack/react-query"
 import * as dateFns from 'date-fns'
 
 import { DataTable, DataTableColumn } from "@/components/DataTable"
 import { Tag } from "@/components/Tag"
+import { Tooltip } from "@/components/Tooltip"
 import { QueryTag } from "@/constants"
 import { useFilterStore } from "@/store/filter"
 import { GithubErrorResponse, GithubPaginatedResponse, GithubRepository } from "@/types"
@@ -92,9 +93,13 @@ const columns: Array<DataTableColumn<GithubRepository>> = [
     sortable: true,
     cellClassName: styles.date_column,
     render({ pushed_at }) {
-      return dateFns.formatDistance(new Date(pushed_at), new Date(), {
-        addSuffix: true
-      })
+      return (
+        <Tooltip delayDuration={200} title={dateFns.format(new Date(pushed_at), 'MM/dd/yyyy HH:mm:ss')}>
+          {dateFns.formatDistance(new Date(pushed_at), new Date(), {
+            addSuffix: true
+          })}
+        </Tooltip>
+      )
     }
   }
 ]
@@ -103,25 +108,29 @@ export function List() {
   const {
     input,
     technology,
-    queryParams,
-    setQueryParams
+    page,
+    pageSize,
+    sortBy,
+    sortDirection,
+    setPage,
+    setPageSize,
+    setSortBy,
+    setSortDirection
   } = useFilterStore()
-
-  const queryClient = useQueryClient()
 
   const { refetch, data, isLoading, error } = useQuery<GithubPaginatedResponse<GithubRepository[]>, GithubErrorResponse>({
     queryKey: [
       QueryTag.repositories,
-      queryParams.page,
-      queryParams.pageSize,
-      queryParams.sortBy,
-      queryParams.sortDirection,
+      page,
+      pageSize,
+      sortBy,
+      sortDirection,
       technology,
       input
     ],
     queryFn: async ({ signal }) => {
       function getSortColumnName() {
-        const sortColumn = columns.find(({ field }) => field === queryParams.sortBy)
+        const sortColumn = columns.find(({ field }) => field === sortBy)
         if (!sortColumn) {
           return undefined
         }
@@ -135,10 +144,10 @@ export function List() {
       }
 
       const paginationParams = Object.entries({
-        page: queryParams.page,
-        'per_page': queryParams.pageSize,
+        page: page,
+        'per_page': pageSize,
         sort: getSortColumnName(),
-        order: queryParams.sortDirection
+        order: sortDirection
       })
         .filter(([, value]) => !!value)
         .map(([key, value]) => `${key}=${value}`)
@@ -172,19 +181,25 @@ export function List() {
     () => {
       refetch()
     },
-    [input, technology, queryParams, refetch, queryClient]
+    [input, technology, refetch]
   )
 
   return (
     <DataTable
       data={data?.items}
       columns={columns}
-      queryParams={queryParams}
+      page={page}
+      pageSize={pageSize}
+      sortBy={sortBy}
+      sortDirection={sortDirection}
       totalCount={data?.total_count}
       isLoading={isLoading}
-      onQueryChange={setQueryParams}
-      keyExtractor={ ({ id }) => id.toString() }
       emptyState={error?.message}
+      onPageChange={setPage}
+      onPageSizeChange={setPageSize}
+      onSortByChange={setSortBy}
+      onSortDirectionChange={setSortDirection}
+      keyExtractor={ ({ id }) => id.toString() }
       onRowClick={({ html_url }) => window.open(html_url, '_blank')}
     />
   )

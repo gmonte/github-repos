@@ -33,9 +33,9 @@
   top: 0;
   right: 5%;
   font-size: 512px;
-  color: var(--color-black-700);
+  color: var(--color-neutral-100);
   animation: moveAxis 5s ease-in-out infinite 1s;
-  opacity: 0.4;
+  opacity: 0.03;
 }
 
 .github_image_bg_container {
