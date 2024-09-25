@@ -60,6 +60,11 @@ Before you begin, ensure you have the following software installed on your machi
     corepack prepare pnpm@9.11.0 --activate
     ```
 
+- **GitHub Access Token**
+  - A GitHub Access Token is recommended for increasing the limit of requests to the GitHub API. You can generate a token by following the instructions in the [GitHub documentation](https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/creating-a-personal-access-token). Ensure the token has the `public_repo` scope for accessing public repositories; 
+  - To use the token, copy the `.env.example` file to a new file named `.env` and set the token in the `.env` file as `VITE_GITHUB_TOKEN="<your_personal_access_token>"`.
+
+
 ### Project Scripts
 The following scripts are available for managing the project:
 
