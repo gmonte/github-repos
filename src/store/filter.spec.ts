@@ -25,10 +25,10 @@ describe('useFilterStore', () => {
     const { result } = renderHook(() => useFilterStore())
 
     act(() => {
-      result.current.setTechnology(Technology.javascript)
+      result.current.setTechnology(Technology.scala)
     })
 
-    expect(result.current.technology).toBe(Technology.javascript)
+    expect(result.current.technology).toBe(Technology.scala)
     expect(result.current.page).toBe(1)
   })
 
