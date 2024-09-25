@@ -113,7 +113,7 @@ This project utilizes a variety of technologies and libraries, summarized below:
 
 ## Private Repository
 
-This project is hosted in a private GitHub repository. To ensure code quality and application functionality, we have implemented a GitHub Action that automates the testing and deployment process.
+This project is hosted in a private GitHub repository. To ensure code quality and application functionality, I have implemented a GitHub Action that automates the testing and deployment process.
 
 ### GitHub Action
 
