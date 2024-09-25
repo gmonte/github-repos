@@ -164,9 +164,9 @@ export function List() {
         `https://api.github.com/search/repositories?q=${q}&${paginationParams}`,
         {
           signal,
-          headers: {
+          headers: import.meta.env.VITE_GITHUB_TOKEN ? {
             'Authorization': `token ${import.meta.env.VITE_GITHUB_TOKEN}`
-          }
+          } : undefined
         }
       )
       const data = await response.json()
