@@ -81,7 +81,6 @@
 
 .empty_state {
   text-align: center;
-  max-width: var(--space-60);
 }
 
 .skeleton {
