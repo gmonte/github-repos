@@ -57,6 +57,12 @@ describe('useFilterStore', () => {
     const { result } = renderHook(() => useFilterStore())
 
     act(() => {
+      result.current.setPage(3)
+    })
+
+    expect(result.current.page).toBe(3)
+
+    act(() => {
       result.current.setPageSize(20)
     })
 
@@ -68,6 +74,12 @@ describe('useFilterStore', () => {
     const { result } = renderHook(() => useFilterStore())
 
     act(() => {
+      result.current.setPage(3)
+    })
+
+    expect(result.current.page).toBe(3)
+
+    act(() => {
       result.current.setSortBy('name')
     })
 
@@ -75,14 +87,37 @@ describe('useFilterStore', () => {
     expect(result.current.page).toBe(1)
   })
 
-  it('should update sortDirection and reset page', () => {
+  it('should update sortDirection asc and reset page', () => {
     const { result } = renderHook(() => useFilterStore())
+
+    act(() => {
+      result.current.setPage(3)
+    })
+
+    expect(result.current.page).toBe(3)
 
     act(() => {
       result.current.setSortDirection('asc')
     })
 
     expect(result.current.sortDirection).toBe('asc')
+    expect(result.current.page).toBe(1)
+  })
+
+  it('should update sortDirection desc and reset page', () => {
+    const { result } = renderHook(() => useFilterStore())
+
+    act(() => {
+      result.current.setPage(3)
+    })
+
+    expect(result.current.page).toBe(3)
+
+    act(() => {
+      result.current.setSortDirection('desc')
+    })
+
+    expect(result.current.sortDirection).toBe('desc')
     expect(result.current.page).toBe(1)
   })
 })
