@@ -127,3 +127,4 @@ The action is triggered on each merge to the `main` branch and performs the foll
 6. **Deploy to Firebase Hosting**: Deploys the application to Firebase Hosting.
 
 This setup enables a continuous development cycle and ensures that code changes are automatically tested before deployment.
+

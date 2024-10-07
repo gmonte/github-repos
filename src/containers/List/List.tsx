@@ -1,5 +1,3 @@
-import { useEffect } from "react"
-
 import { CalendarCheck, GitFork, Hash, Star, TextAlignLeft, User } from "@phosphor-icons/react"
 import { useQuery } from "@tanstack/react-query"
 import * as dateFns from 'date-fns'
@@ -118,7 +116,7 @@ export function List() {
     setSortDirection
   } = useFilterStore()
 
-  const { refetch, data, isLoading, error } = useQuery<GithubPaginatedResponse<GithubRepository[]>, GithubErrorResponse>({
+  const { data, isLoading, error } = useQuery<GithubPaginatedResponse<GithubRepository[]>, GithubErrorResponse>({
     queryKey: [
       QueryTag.repositories,
       page,
@@ -176,13 +174,6 @@ export function List() {
       return data
     }
   })
-
-  useEffect(
-    () => {
-      refetch()
-    },
-    [input, technology, refetch]
-  )
 
   return (
     <DataTable

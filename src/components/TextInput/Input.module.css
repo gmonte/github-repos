@@ -1,12 +1,12 @@
 .container {
   flex: 1;
 
-  &::placeholder {
-    color: var(--color-neutral-700);
-  }
-
   &:focus {
     outline: 2px solid var(--color-blue-400);
     outline-offset: 2px;
+  }
+
+  &::placeholder {
+    color: var(--color-neutral-700);
   }
 }
