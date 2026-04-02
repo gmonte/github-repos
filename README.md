@@ -11,7 +11,7 @@
   - [GitHub Action](#github-action)
 
 ## Challenge Description
-This project was made as a technical test for Intenseye Frontend Engineer position.
+This project was made as a technical test for Frontend Engineer position.
 
 #### Requirements:
 
