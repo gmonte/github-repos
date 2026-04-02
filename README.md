@@ -1,4 +1,4 @@
-# Intenseye Frontend Case Study by Guilherme Monte
+# Frontend Case Study by Guilherme Monte
 
 ## Summary
 - [Challenge Description](#challenge-description)
